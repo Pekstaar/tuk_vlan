@@ -7,6 +7,7 @@ import { Home, Login, Register } from "./screens";
 import LeaveCall from "./screens/LeaveScreen";
 import Meet from "./screens/Meet";
 import Meeting from "./screens/Meeting";
+import Social from "./screens/Social";
 import { mainContext } from "./services/context/MainContext";
 import RoomProvider from "./services/context/RoomContext";
 import PrivateRoute from "./services/PrivateRoute";
@@ -72,6 +73,15 @@ function App() {
               element={
                 <PrivateRoute>
                   <Call />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path={"/social"}
+              element={
+                <PrivateRoute>
+                  <Social />
                 </PrivateRoute>
               }
             />

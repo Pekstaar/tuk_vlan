@@ -1,9 +1,7 @@
-import { MdAccountCircle } from "react-icons/md";
 import { Chats } from "../components/chat/Chats";
-import { SideNav } from "../components/chat/SideNav";
+import { SideNav } from "../components/SideNav";
 import { Users } from "../components/chat/Users";
 import { MainState } from "../services/context/MainContext";
-import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // icons
-import { FaVideo, FaList } from "react-icons/fa";
+import { FaVideo } from "react-icons/fa";
 import { MdGroup, MdSettingsSuggest } from "react-icons/md";
-import { IoLogoWechat } from "react-icons/io5";
+import { IoLogoWechat, IoShareSocialSharp } from "react-icons/io5";
 import { IconButton, Tooltip } from "@mui/material";
 import { GiPowerButton } from "react-icons/gi";
-import { mainContext } from "../../services/context/MainContext";
+import { mainContext } from "../services/context/MainContext";
 
 export const SideNav = () => {
   const { currentNavItem: current, setCurrentNavItem: setCurrent } =
@@ -26,21 +26,6 @@ export const SideNav = () => {
       return "hover:bg-teal-100 hover:text-teal-800 rounded-xl p-3.5 cursor-pointer";
   };
 
-  // const logoutUser = () => {
-  //   try {
-  //     // updateDoc(doc(db, "users", currentUser.uid), {
-  //     //   status: "offline",
-  //     // }).then(() =>
-  //     //   signOut(auth).then(() => {
-  //     //     toast.success("Logout success!");
-  //     //     navigate("/");
-  //     //   })
-  //     // );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   return (
     <div className="flex-shrink-0">
       <div className="sidelist border-gray-200 border-r-2 h-full w-16 p-1 flex flex-col justify-between items-center">
@@ -56,7 +41,7 @@ export const SideNav = () => {
         <div
           className={`menu flex flex-col gap-3 items-center ${commonStyle.gray500}`}
         >
-          {/* contact list */}
+          {/* contact list
           <Link
             to="/chat/contacts"
             as="span"
@@ -64,11 +49,12 @@ export const SideNav = () => {
             // onClick={() => setCurrent("contacts")}
           >
             <FaList className={`${commonStyle.textxl}`} />
-          </Link>
+          </Link> */}
 
           {/* Friends chat */}
           <Link
-            to="/chat"
+            to="/"
+            data-tip={"chat"}
             as="span"
             className={` ${handleSpan("friendschat")}`}
             onClick={() => setCurrent("friendschat")}
@@ -78,7 +64,7 @@ export const SideNav = () => {
 
           {/* group chat page */}
           <Link
-            to="/chat/"
+            to="/"
             as="span"
             className={` ${handleSpan("groupschat")}`}
             onClick={() => setCurrent("groupschat")}
@@ -94,6 +80,16 @@ export const SideNav = () => {
             onClick={() => setCurrent("videocall")}
           >
             <FaVideo className={`${commonStyle.textxl}`} />
+          </Link>
+
+          {/* video Call */}
+          <Link
+            to="/social/"
+            as="span"
+            className={` ${handleSpan("social")}`}
+            onClick={() => setCurrent("social")}
+          >
+            <IoShareSocialSharp className={`${commonStyle.textxl}`} />
           </Link>
 
           {/* configurations */}
