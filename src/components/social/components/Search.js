@@ -8,7 +8,7 @@ const Search = ({ handleChange }) => {
       <input
         type="text"
         onChange={handleChange}
-        className={"py-1.5 px-5 bg-inherit flex-1"}
+        className={"py-1.5 px-5 bg-inherit flex-1 focus:outline-none"}
         placeholder={"search"}
       />
       {/* search icon */}

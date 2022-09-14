@@ -1,4 +1,11 @@
 import { SideNav } from "../components/SideNav";
+import {
+  Body,
+  LeftPanel,
+  MiddlePanel,
+  RightPanel,
+} from "../components/social/components";
+
 import Header from "../components/social/Header";
 
 const Social = () => {
@@ -11,11 +18,20 @@ const Social = () => {
         {/* side Icons Nav */}
         <SideNav />
 
-        <div className="bg-gray-200 flex flex-1 flex-grow">
+        <div className="bg-gray-200 flex flex-1 flex-grow flex-col">
           {/* TODO: Add social main header */}
           <Header />
 
           {/* TODO: Add Social main body */}
+          <Body>
+            {/* left panel */}
+            <LeftPanel />
+            {/* middle panel */}
+            <MiddlePanel />
+
+            {/* right panel */}
+            <RightPanel />
+          </Body>
         </div>
       </div>
     </main>
