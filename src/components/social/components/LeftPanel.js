@@ -1,5 +1,6 @@
 import React from "react";
 import ActivityItem from "./ActivityItem";
+import CardHeader from "./CardHeader";
 import Wrapper from "./Wrapper";
 
 const LeftPanel = () => {
@@ -7,10 +8,7 @@ const LeftPanel = () => {
     <div className={"flex-[0.8] p-3 "}>
       <Wrapper className={"h-[330px] "}>
         {/* header */}
-        <div className="flex justify-between">
-          <span className="font-bold ">Activities</span>
-          <span className="font-medium text-slate-500 ">See all</span>
-        </div>
+        <CardHeader title={"Activities"} />
 
         {/* body */}
         <div>
@@ -31,10 +29,7 @@ const LeftPanel = () => {
 
       <Wrapper className={" mt-3"}>
         {/* header */}
-        <div className="flex justify-between">
-          <span className="font-bold ">Explore</span>
-          <span className="font-medium text-slate-500 ">See all</span>
-        </div>
+        <CardHeader title={"Explore"} />
 
         {/* body */}
         <div className=" grid grid-cols-3 gap-1">
