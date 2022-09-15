@@ -1,7 +1,9 @@
 import React from "react";
 
 const Body = ({ children }) => {
-  return <div className="container flex flex-1 p-3 gap-8">{children}</div>;
+  return (
+    <div className="container flex flex-1 gap-6 max-h-[90vh]  ">{children}</div>
+  );
 };
 
 export default Body;

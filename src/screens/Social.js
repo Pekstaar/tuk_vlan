@@ -12,8 +12,8 @@ const Social = () => {
   return (
     <main className="container mx-auto p-2 flex flex-col ">
       <div
-        className="bg-white  flex px-2"
-        style={{ height: "96vh", minHeight: "730px" }}
+        className="bg-white  flex px-2 overflow-hidden"
+        style={{ maxHeight: "96vh", minHeight: "730px" }}
       >
         {/* side Icons Nav */}
         <SideNav />
