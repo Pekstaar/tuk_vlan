@@ -1,11 +1,13 @@
 import React from "react";
 import Post from "./Post";
+import SharePostInput from "./SharePostInput";
 import Wrapper from "./Wrapper";
 
 const MiddlePanel = () => {
   return (
     <Wrapper className={"flex-[2] bg-inherit "}>
       <div className="max-h-[86vh] overflow-y-scroll  ">
+        <SharePostInput />
         {posts?.map((post, i) => (
           <Post
             key={i}

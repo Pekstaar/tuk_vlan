@@ -107,7 +107,7 @@ export const Users = ({
           ) : (
             <span className="font-medium slab text-3xl text-green-800">
               {names && names[0].substring(0, 1)}
-              {names && names[1].substring(0, 1)}
+              {names && names[1]?.substring(0, 1)}
             </span>
           )}
 
