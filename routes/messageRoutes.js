@@ -1,0 +1,11 @@
+const router = require("express").Router();
+const {
+  sendMessage,
+  allMessages,
+} = require("../controllers/messageControllers");
+const { protect } = require("../middleware/authMiddleWare");
+
+router.route("/").post(protect, sendMessage);
+router.route("/:chatId").get(protect, allMessages);
+
+module.exports = router;
