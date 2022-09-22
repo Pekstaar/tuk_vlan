@@ -1,14 +1,12 @@
 import React from "react";
+import { MainState } from "../../../services/context/MainContext";
 
-const SharePostInput = () => {
-  const [showNewPostModal, setNewPostModal] = React.useState(false);
-
-  const handleShowModal = () => {
-    setNewPostModal(false);
-  };
+const SharePostInput = ({ handleShowModal }) => {
+  // const [showNewPostModal, setNewPostModal] = React.useState(false);
+  const { user } = MainState();
 
   return (
-    <div className="bg-white border-2 rounded-2xl p-3">
+    <div className="bg-white border-2 rounded-2xl p-3 sticky top-0 z-10">
       <div className="flex p-2 items-center gap-3">
         <Image
           img={
@@ -17,11 +15,11 @@ const SharePostInput = () => {
         />
 
         <div
-          onPress={handleShowModal}
+          onClick={handleShowModal}
           type="button"
           className="p-2 focus:outline-none bg-slate-200 rounded-full flex-grow h-10 cursor-pointer text-gray-500"
         >
-          what's in your mind, New User?
+          what's in your mind, {user?.name}?
         </div>
       </div>
       <hr />

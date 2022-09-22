@@ -18,7 +18,7 @@ const Meeting = () => {
   };
 
   return (
-    <main className="container mx-auto p-2 flex flex-col ">
+    <main className=" mx-auto p-2 flex flex-col ">
       <div
         className="bg-white  flex px-2 overflow-hidden"
         style={{ maxHeight: "96vh", minHeight: "730px" }}

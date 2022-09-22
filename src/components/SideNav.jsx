@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // icons
 import { FaVideo } from "react-icons/fa";
 import { MdGroup, MdSettingsSuggest } from "react-icons/md";
@@ -7,11 +7,17 @@ import { IoLogoWechat, IoShareSocialSharp } from "react-icons/io5";
 import { IconButton, Tooltip } from "@mui/material";
 import { GiPowerButton } from "react-icons/gi";
 import { mainContext } from "../services/context/MainContext";
+import localStorageService from "../services/LocalStorageService";
 
 export const SideNav = () => {
+  const navigate = useNavigate();
   const { currentNavItem: current, setCurrentNavItem: setCurrent } =
     useContext(mainContext);
   // const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorageService.remove("user");
+    navigate("/login");
+  };
 
   const commonStyle = {
     gray500: "text-gray-400",
@@ -106,7 +112,7 @@ export const SideNav = () => {
         {/* logout button */}
         <div className="mb-5 rounded-full p-0.5 bg-teal-700 ">
           <Tooltip title="logout" placement="top">
-            <IconButton onClick={() => {}}>
+            <IconButton onClick={handleLogout}>
               <GiPowerButton className="text-gray-100" />
             </IconButton>
           </Tooltip>

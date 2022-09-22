@@ -67,8 +67,8 @@ const Home = () => {
   }, []);
 
   return (
-    <main className="container mx-auto p-2 flex flex-col ">
-      <div className="bg-white h-14 flex border-b-2 border-400-100">
+    <main className=" mx-auto p-2 flex flex-col ">
+      <div className="bg-white h-14 flex border-b-2 border-gray-100">
         <div className="flex-grow flex justify-center items-center">
           <h2 className="text-2xl font-bold text-teal-900 ">TUK-VLAN</h2>
         </div>
@@ -112,7 +112,7 @@ const Home = () => {
       </div>
       <div
         className="bg-white  flex px-2"
-        style={{ height: "96vh", minHeight: "730px" }}
+        style={{ height: "92.3vh", minHeight: "730px" }}
       >
         {/* side Icons Nav */}
         <SideNav />

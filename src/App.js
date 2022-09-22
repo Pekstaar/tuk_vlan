@@ -11,6 +11,7 @@ import Social from "./screens/Social";
 import { mainContext } from "./services/context/MainContext";
 import RoomProvider from "./services/context/RoomContext";
 import PrivateRoute from "./services/PrivateRoute";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
   const id = useMemo(() => window.location.search, []);
@@ -25,70 +26,74 @@ function App() {
     }
   }, [id, setMeetingId]);
 
+  const queryClient = new QueryClient();
+
   return (
     <div className="bg-gray-50">
-      <RoomProvider>
-        <Routes>
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/signup"} element={<Register />} />
-          <>
-            <Route
-              path={"/"}
-              element={
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              }
-            />
+      <QueryClientProvider client={queryClient}>
+        <RoomProvider>
+          <Routes>
+            <Route path={"/login"} element={<Login />} />
+            <Route path={"/signup"} element={<Register />} />
+            <>
+              <Route
+                path={"/"}
+                element={
+                  <PrivateRoute>
+                    <Home />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path={"/call"}
-              element={
-                <PrivateRoute>
-                  <Meet />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path={"/call"}
+                element={
+                  <PrivateRoute>
+                    <Meet />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path={"/meet"}
-              element={
-                <PrivateRoute>
-                  <Meeting />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path={"/meet"}
+                element={
+                  <PrivateRoute>
+                    <Meeting />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path={"/leave"}
-              element={
-                <PrivateRoute>
-                  <LeaveCall />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path={"/leave"}
+                element={
+                  <PrivateRoute>
+                    <LeaveCall />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path={"/meet/:id"}
-              element={
-                <PrivateRoute>
-                  <Call />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path={"/meet/:id"}
+                element={
+                  <PrivateRoute>
+                    <Call />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path={"/social"}
-              element={
-                <PrivateRoute>
-                  <Social />
-                </PrivateRoute>
-              }
-            />
-          </>
-        </Routes>
-      </RoomProvider>
-      <ToastContainer theme="dark" />
+              <Route
+                path={"/social"}
+                element={
+                  <PrivateRoute>
+                    <Social />
+                  </PrivateRoute>
+                }
+              />
+            </>
+          </Routes>
+        </RoomProvider>
+        <ToastContainer theme="dark" />
+      </QueryClientProvider>
     </div>
   );
 }

@@ -1,22 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import Post from "./Post";
 import SharePostInput from "./SharePostInput";
+import Spinner from "./Spinner";
 import Wrapper from "./Wrapper";
+import PostServices from "../../../services/PostServices";
+import { useQuery, useMutation } from "react-query";
+import NewPostModal from "./NewPostModal";
+import { toastError, toastSuccess } from "../../toaster";
 
 const MiddlePanel = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [post, setPost] = useState({
+    title: "",
+    text: "",
+    photo_1: "",
+    photo_2: "",
+  });
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  const fetchPosts = async () => {
+    const posts = await PostServices.fetchMyPosts();
+
+    return posts;
+  };
+  const { data, status, refetch } = useQuery("posts", fetchPosts);
+  const createPostMutation = useMutation((newPost) => {
+    return PostServices.createPost(newPost);
+  });
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setPost((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    createPostMutation.mutate(
+      {
+        title: post?.title,
+        text: post?.text,
+        photo_url: [post?.photo_1, post?.photo_2],
+      },
+      {
+        onSuccess: () => {
+          toastSuccess("post created!");
+          handleCloseModal();
+          refetch();
+        },
+        onError: (error) => {
+          toastError(
+            error?.response?.data?.message || error?.response?.data?.error
+          );
+        },
+      }
+    );
+  };
+
   return (
-    <Wrapper className={"flex-[2] bg-inherit "}>
-      <div className="max-h-[86vh] overflow-y-scroll  ">
-        <SharePostInput />
-        {posts?.map((post, i) => (
-          <Post
-            key={i}
-            img={post?.image}
-            user={post?.user}
-            title={post?.title}
-            desc={post?.desc}
-          />
-        ))}
+    <Wrapper className={"flex-[2] bg-inherit overflow-y-scroll"}>
+      <NewPostModal
+        isOpen={openModal}
+        setOpen={setOpenModal}
+        handleClose={handleCloseModal}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        loading={createPostMutation?.isLoading}
+      />
+      <SharePostInput handleShowModal={handleOpenModal} />
+
+      <div className="h-[86vh] relative">
+        {createPostMutation?.isLoading && (
+          <div className="absolute h-full top-0 bg-[#ffffff90] flex items-center flex-col justify-center z-[20] right-0 left-0">
+            <Spinner />
+            <span className="text-gray-600">Creating post . . .</span>
+          </div>
+        )}
+        {status === "loading" ? (
+          <Loader />
+        ) : (
+          data?.map((post, i) => (
+            <Post
+              key={i}
+              img={post?.photo_url[0]}
+              user={post?.postedBy?.name}
+              title={post?.title}
+              desc={post?.text}
+            />
+          ))
+        )}
       </div>
     </Wrapper>
   );
@@ -24,38 +102,9 @@ const MiddlePanel = () => {
 
 export default MiddlePanel;
 
-const posts = [
-  {
-    user: {
-      img: "https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=600",
-      name: "New User",
-      time: "8min",
-    },
-    image:
-      "https://www.freecodecamp.org/news/content/images/size/w2000/2021/02/React-js-1.png",
-    title: "Why React framework?",
-    desc: "ReactJS is just simpler to grasp right away. The component-based approach, well-defined lifecycle, and use of just plain JavaScript make React very simple to learn, build a professional web (and mobile applications), and support it. React uses a special syntax called JSX which allows you to mix HTML with JavaScript.",
-  },
-  {
-    user: {
-      img: "https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=600",
-      name: "New User",
-      time: "8min",
-    },
-    image:
-      "https://images.pexels.com/photos/296115/pexels-photo-296115.jpeg?auto=compress&cs=tinysrgb&w=600",
-    title: "Polish your coding skills",
-    desc: "Reading codes is the most crucial ingredient if you want to become an expert programmer or writer in the programming landscape. It goes hand in hand because to be an exceptional writer you have to be an exceptional reader first. This statement simply implies reading more comprehensive books as well as a myriad different book.",
-  },
-  {
-    user: {
-      img: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=600",
-      name: "Ben Chilwell",
-      time: "5min",
-    },
-    image:
-      "https://media.istockphoto.com/photos/young-woman-using-smart-phone-picture-id1252720235?b=1&k=20&m=1252720235&s=612x612&w=0&h=lQZF9BLx3ue6YKklsR-PuxBzQMkpf-R6cDRrXf9zMi8=",
-    title: "Facebook leads the social industry",
-    desc: " Facebook is inarguably the largest and most popular social media platform in the world. While that level of proliferation ensures at least some of your audience will regularly use this platform and take in your content, Facebook has developed a somewhat negative reputation among younger users who are increasingly turning to alternative sites.",
-  },
-];
+const Loader = ({ desc = "loading posts. . ." }) => (
+  <div className="h-[50vh] flex flex-col justify-center items-center">
+    <Spinner />
+    <span className="text-gray-400">{desc}</span>
+  </div>
+);

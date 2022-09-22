@@ -4,17 +4,23 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaComment } from "react-icons/fa";
 import ActionButton from "./ActionButton";
 
-const Post = ({ img, title, desc }) => {
+const Post = ({ img, title, desc, user }) => {
   return (
     <div className="w-full rounded-xl my-2 overflow-hidden bg-white border-2 border-gray-400 relative">
       <button className="absolute top-1 right-1 z-10">
         <BsThreeDotsVertical className="text-xl text-gray-500" />
       </button>
-      <img src={img} alt={img} className={"h-[350px] w-full object-cover"} />
-
+      {img !== "" && (
+        <img src={img} alt={img} className={"h-[350px] w-full object-cover"} />
+      )}
       <div className="p-2">
         {/* title */}
-        <div className="text-lg font-semibold p-2">{title}</div>
+        <div className="text-lg font-semibold p-2 flex justify-between items-center">
+          <span>{title}</span>
+          <span className="text-sm text-gray-500 font-medium">
+            Posted by: {user}
+          </span>
+        </div>
 
         <p className="text-sm text-gray-700 px-2 font-normal">{desc}</p>
         {/* description */}
@@ -57,9 +63,11 @@ const Post = ({ img, title, desc }) => {
             />
           </div>
           <span className="font-semibold  text-gray-500 text-sm m-auto">
-            Liked by{" "}
-            <span className="font-bold text-gray-800">Eric Pekmah</span> and{" "}
-            <span className="font-bold text-gray-800">300</span> others
+            Liked by
+            <span className="font-bold text-gray-800">
+              Eric Pekmah
+            </span> and <span className="font-bold text-gray-800">300</span>{" "}
+            others
           </span>
         </div>
       </div>

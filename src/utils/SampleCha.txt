@@ -1,0 +1,22 @@
+
+“Hello, welcome to [COMPANY] and thank you for visiting our website. How can we assist you?”
+“Hello, thank you for visiting. Can I help you with something?”
+“Hello, and thank you for using [COMPANY]’s live chat service. Is there something in particular we can help you with?
+“Good morning/ afternoon/ evening, and thank you for contacting our chat support. How are you doing today? Please tell us how we can assist you.”
+“Hello there! My name is [AGENT’S NAME]. How can I help you today?”
+“Hello, thank you for contacting our live chat support. May I have your name please?”
+“Thank you for calling our chat line. I wanted to let you know that this chat will be reviewed for quality assurance purposes and for further follow-up if needed.”
+“Hello, thanks for visiting. I would like to mention that this chat may be recorded for the internal training process.”
+
+
+“Welcome back [CUSTOMER NAME]! Happy to see you again. What can we do for you today?”
+“Welcome back [CUSTOMER NAME]! It’s great to see you again. Did you want to pick up where you left off?”
+“Hello again [CUSTOMER NAME], and welcome back to [COMPANY]’s site. Did you face any further problems with the [previous issue]?”
+“Hello [CUSTOMER NAME]! How are you doing? Let me know how I can help you today.”
+“Hi [CUSTOMER NAME], glad to see you back! Let’s see what I can do for you today.”
+
+
+“It sounds like you may have reached us in error, we’re a … company. I’m sorry we can’t help you with …”
+“I’m sorry, but I’m afraid you have reached the wrong company. This is … , and we are not affiliated with …”
+“I’m sorry, we would not be the right company to help you with your question. We don’t deal with … We appreciate your contact. Have a good day.”
+“I’m sorry, I believe you are looking for … However, we specialize in … So you have probably reached us in error.”
