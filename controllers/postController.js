@@ -6,31 +6,29 @@ const Post = require("../models/Post.model");
 // @desc    create new post
 // @route   POST /api/users/follow
 // @access  private
-const create = (req, res, next) => {
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, async (err, fields, files) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Image could not be uploaded",
-      });
-    }
-    let post = new Post(fields);
-    post.postedBy = req.user._id;
-    if (files.photo) {
-      post.photo.data = fs.readFileSync(files.photo.filepath);
-      post.photo.contentType = files.photo.type;
-    }
-    try {
-      let result = await post.save();
+const create = async (req, res, next) => {
+  console.log(req.body);
+  // let form = new formidable.IncomingForm();
+  // form.keepExtensions = true;
+  // form.parse(req, async (err, fields, files) => {
+  // if (err) {
+  //   return res.status(400).json({
+  //     error: "Image could not be uploaded",
+  //   });
+  // }
 
-      res.json(result);
-    } catch (err) {
-      return res.status(400).json({
-        error: getErrorMessage(err),
-      });
-    }
-  });
+  let post = new Post(req.body);
+  post.postedBy = req.user._id;
+  try {
+    let result = await post.save();
+
+    res.json(result);
+  } catch (err) {
+    return res.status(400).json({
+      error: getErrorMessage(err),
+    });
+  }
+  // });
 };
 
 const postByID = async (req, res, next) => {

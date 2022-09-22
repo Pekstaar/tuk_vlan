@@ -6,15 +6,16 @@ const PostSchema = new mongoose.Schema(
     },
     text: {
       type: String,
-      required: "Text is required",
     },
     photo: {
       data: Buffer,
       contentType: String,
     },
-    photo_url: {
-      type: "string",
-    },
+    photo_url: [
+      {
+        type: String,
+      },
+    ],
     likes: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
     comments: [
       {
