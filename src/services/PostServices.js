@@ -18,8 +18,9 @@ const fetchMyPosts = async () => {
 
 const likePost = async (id) => {
   await setAuthToken(axios);
+  console.log(id);
 
-  const res = await axios.put(`/like`, {
+  const res = await axios.put(`/posts/like`, {
     postId: id,
   });
   return res.data;
@@ -27,8 +28,9 @@ const likePost = async (id) => {
 
 const unlikePost = async (id) => {
   await setAuthToken(axios);
+  console.log(id);
 
-  const res = await axios.put(`/unlike`, {
+  const res = await axios.put(`/posts/unlike`, {
     postId: id,
   });
 

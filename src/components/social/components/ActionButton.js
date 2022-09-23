@@ -1,8 +1,9 @@
 import React from "react";
 
-const ActionButton = ({ isCurrent, children }) => {
+const ActionButton = ({ isCurrent, children, handleClick }) => {
   return (
     <button
+      onClick={handleClick}
       className={`h-10 w-10 flex items-center rounded-full justify-center border-2 hover:scale-[0.95] ${
         isCurrent
           ? "bg-teal-50 text-teal-600 border-teal-400"
