@@ -7,7 +7,6 @@ import UserBadge from "../usersList/UserBadge";
 import { MainState } from "../../services/context/MainContext";
 
 const GroupModal = ({ showGroupModal, setShowGroupModal, setIsDrawerOpen }) => {
-  const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [addedUsers, setAddedUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,7 +16,7 @@ const GroupModal = ({ showGroupModal, setShowGroupModal, setIsDrawerOpen }) => {
 
   const handleSearch = async (e) => {
     const searchValue = e.target.value;
-    setSearch(searchValue);
+    // setSearch(searchValue);
     setLoading(true);
 
     try {

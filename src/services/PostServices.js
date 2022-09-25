@@ -41,7 +41,7 @@ const commentOnPost = async (data) => {
   await setAuthToken(axios);
 
   // data: comment, postId
-  const res = await axios.put(`/comment`, data);
+  const res = await axios.put(`/posts/comment`, data);
 
   return res.data;
 };

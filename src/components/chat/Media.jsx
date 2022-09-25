@@ -253,17 +253,17 @@ const Card = ({ currentChat }) => (
   </div>
 );
 
-const FileCard = ({ bg, children, text, number }) => (
-  <div
-    className={`div ${bg} w-28 h-20 rounded-xl flex items-center gap-1 justify-center`}
-  >
-    {children}
-    <div className="ml-1 text-gray-600">
-      <span className="text-xs font block">{text}</span>
-      <span className="text-xl  font-medium block">{number}</span>
-    </div>
-  </div>
-);
+// const FileCard = ({ bg, children, text, number }) => (
+//   <div
+//     className={`div ${bg} w-28 h-20 rounded-xl flex items-center gap-1 justify-center`}
+//   >
+//     {children}
+//     <div className="ml-1 text-gray-600">
+//       <span className="text-xs font block">{text}</span>
+//       <span className="text-xl  font-medium block">{number}</span>
+//     </div>
+//   </div>
+// );
 
 // const ListedItem = ({ name, details, background, children }) => (
 //   <div

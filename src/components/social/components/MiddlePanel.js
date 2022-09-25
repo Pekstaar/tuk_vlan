@@ -43,6 +43,9 @@ const MiddlePanel = () => {
   const unlikePostMutation = useMutation((id) => {
     return PostServices.unlikePost(id);
   });
+  const commentOnPostMutation = useMutation((data) => {
+    return PostServices.commentOnPost(data);
+  });
 
   // console.log("POSTS:", posts);
 
@@ -109,6 +112,19 @@ const MiddlePanel = () => {
     });
   };
 
+  const handleComment = (comment, id) => {
+    return commentOnPostMutation.mutate(
+      { comment: { text: comment }, postId: id },
+      {
+        onSuccess: (data, variables) => {
+          queryClient.setQueryData(["posts", { _id: variables?.postId }], data);
+          // console.log(data);
+          refetch();
+        },
+      }
+    );
+  };
+
   // console.log(
   //   "POSTS",
   //   queryClient
@@ -151,6 +167,9 @@ const MiddlePanel = () => {
               handleLike={() => handleLike(post?._id)}
               handleUnlike={() => handleUnlike(post?._id)}
               likes={post?.likes}
+              handleComment={handleComment}
+              post_id={post?._id}
+              comments={post?.comments}
             />
           ))
         )}
