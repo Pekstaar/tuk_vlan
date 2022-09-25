@@ -168,6 +168,22 @@ const addFollower = async (req, res) => {
   }
 };
 
+const getFriends = async (req, res) => {
+  try {
+    let result = await User.findByIdAndUpdate(req.user?._id)
+      .select("following followers")
+      .populate("following", "_id name")
+      .populate("followers", "_id name")
+      .exec();
+
+    res.status(200).json([...result.following]);
+  } catch (err) {
+    return res.status(400).json({
+      error: getErrorMessage(err),
+    });
+  }
+};
+
 // @desc    Remove follower
 // @route   PUT /api/users/unfollow
 // @access  private
@@ -268,4 +284,5 @@ module.exports = {
   removeFollower,
 
   findMorePeople,
+  getFriends,
 };

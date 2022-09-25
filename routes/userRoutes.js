@@ -20,6 +20,7 @@ router
   .put(protect, userCtrl.removeFollowing, userCtrl.removeFollower);
 
 router.route("/findpeople").get(protect, userCtrl.findMorePeople);
+router.route("/getFriends").get(protect, userCtrl.getFriends);
 
 router
   .route("/:userId")
