@@ -1,10 +1,57 @@
 import React from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+// import { MainState } from "../../../services/context/MainContext";
+import PostServices from "../../../services/PostServices";
 import CardHeader from "./CardHeader";
 import FriendItem from "./FriendItem";
+import LoadingList from "./LoadingList";
 import Suggestion from "./Suggestion";
 import Wrapper from "./Wrapper";
 
+const fetchFollowers = async () => {
+  const followers = await PostServices.getFollowers();
+
+  return followers;
+};
+
+const getFriends = async () => {
+  const friends = await PostServices.getFriends();
+
+  return friends;
+};
+
 const RightPanel = () => {
+  const queryClient = useQueryClient();
+  const followFriendMutation = useMutation((id) => {
+    return PostServices.follow(id);
+  });
+
+  const {
+    data: followers,
+    status,
+    refetch: refetchFollowers,
+  } = useQuery("followers", fetchFollowers);
+
+  const {
+    data: friends,
+    status: fetchingFriends,
+    refetch: refetchFriends,
+  } = useQuery("friends", getFriends);
+
+  // console.log(user);
+
+  const handleFollow = (id) => {
+    return followFriendMutation.mutate(id, {
+      onSuccess: (data, variables) => {
+        // console.log(data);
+
+        queryClient.setQueryData(["followers", { _id: variables }], data);
+        refetchFriends();
+        refetchFollowers();
+      },
+    });
+  };
+
   return (
     <div className={"flex-[0.8] p-3 "}>
       <Wrapper className={"h-[330px] "}>
@@ -15,14 +62,19 @@ const RightPanel = () => {
         <div>
           {/* list */}
 
-          {sampleActivities?.map((act) => (
-            <FriendItem
-              image={act?.img}
-              desc={act?.description}
-              user={act?.user}
-              time={act?.time}
-            />
-          ))}
+          {fetchingFriends === "loading"
+            ? [0, 1, 2, 3, 4]?.map((_) => <LoadingList />)
+            : friends
+                .slice(0, 5)
+                ?.map((act) => (
+                  <FriendItem
+                    key={act?._id}
+                    image={act?.img}
+                    desc={act?.description}
+                    name={act.name}
+                    time={act?.time}
+                  />
+                ))}
         </div>
 
         <div>{/* list */}</div>
@@ -33,11 +85,18 @@ const RightPanel = () => {
         <CardHeader title={"Suggested for you"} />
 
         {/* body */}
-        <div className=" ">
-          {/* list */}
-          {friendSuggestions?.map(({ name, img }) => (
-            <Suggestion image={img} name={name} />
-          ))}
+        <div className="">
+          {/* {/* list */}
+          {status === "loading"
+            ? [0, 1, 2, 3, 4]?.map((_) => <LoadingList />)
+            : followers
+                .slice(0, 5)
+                ?.map(({ name, img, _id }) => (
+                  <Suggestion
+                    name={name}
+                    handleAddFriend={() => handleFollow(_id)}
+                  />
+                ))}
         </div>
 
         <div>{/* list */}</div>
@@ -47,55 +106,3 @@ const RightPanel = () => {
 };
 
 export default RightPanel;
-
-const sampleActivities = [
-  {
-    img: "https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=600",
-    user: "New User",
-    time: "8min",
-  },
-  {
-    img: "https://media.istockphoto.com/photos/portrait-of-a-young-african-man-at-studio-high-fashion-male-model-in-picture-id1325359218?b=1&k=20&m=1325359218&s=612x612&w=0&h=SBHN-tR9nioQFOS_Zsj_FPYMczyl_y40KlhJ8qTezpU=",
-    user: "New User",
-    time: "10 min",
-  },
-  {
-    img: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600",
-    user: "Caroline Atieno",
-    time: "1 hr",
-  },
-  {
-    img: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=600",
-    user: "Ben Chilwell",
-    time: "5min",
-  },
-
-  {
-    img: "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?auto=compress&cs=tinysrgb&w=600",
-    user: "Synthia Njeri",
-    time: "20min",
-  },
-];
-
-const friendSuggestions = [
-  {
-    name: "Hakim ziyech",
-    img: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    name: "Eunice Njeri",
-    img: "https://images.pexels.com/photos/5081971/pexels-photo-5081971.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    name: "Pekmah Cruiz",
-    img: "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    name: "Hakim ziyech",
-    img: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-  {
-    name: "Eunice Njeri",
-    img: "https://images.pexels.com/photos/5081971/pexels-photo-5081971.jpeg?auto=compress&cs=tinysrgb&w=600",
-  },
-];

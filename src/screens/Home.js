@@ -5,13 +5,14 @@ import { MainState } from "../services/context/MainContext";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useEffect, useState } from "react";
-import { Avatar, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 import localStorageService from "../services/LocalStorageService";
 import { useNavigate } from "react-router-dom";
 import { toastError } from "../components/toaster";
 import axios, { setAuthToken } from "../services/AxiosService";
 import { Media } from "../components/chat/Media";
 import socketIo from "socket.io-client";
+import { Image } from "../components/social/components/SharePostInput";
 
 const ws = socketIo("http://localhost:5500");
 
@@ -48,9 +49,9 @@ const Home = () => {
     }
   };
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleMenu = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -67,14 +68,14 @@ const Home = () => {
   }, []);
 
   return (
-    <main className=" mx-auto p-2 flex flex-col ">
-      <div className="bg-white h-14 flex border-b-2 border-gray-100">
+    <main className=" mx-auto px-2 flex flex-col ">
+      <div className="bg-white h-[70px] flex border-b-2 border-gray-100">
         <div className="flex-grow flex justify-center items-center">
           <h2 className="text-2xl font-bold text-teal-900 ">TUK-VLAN</h2>
         </div>
         <div className="flex justify-center items-center text-center min-w-14  ">
           <div className="text-teal-800 flex flex-col">
-            <Avatar
+            {/* <Avatar
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
@@ -84,7 +85,10 @@ const Home = () => {
                 "https://netstorage-tuko.akamaized.net/images/0fgjhs16n71qtsue6.jpg"
               }
               className="cursor-pointer self-center border-2 border-teal-700"
-            />
+            /> */}
+            <div className="flex justify-center ">
+              <Image label={user?.name?.slice(0, 1)} />
+            </div>
             <span className={"text-sm"}>{user?.name}</span>
 
             <Menu

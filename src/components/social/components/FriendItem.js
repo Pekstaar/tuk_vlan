@@ -1,24 +1,28 @@
 import React from "react";
 
-const FriendItem = ({ image, desc, user, time }) => {
+const FriendItem = ({ image, desc, name, time }) => {
   return (
     <div className="p-2 flex gap-2">
-      <div className="h-10 w-10 rounded-full overflow-hidden">
-        <img
-          className="object-cover h-full w-full"
-          src={image}
-          alt="activity"
-        />
+      {/* {JSON.stringify(name)} */}
+      <div className="h-10 w-10 rounded-full overflow-hidden flex bg-teal-500 text-white font-bold">
+        {image && (
+          <img
+            className="object-cover h-full w-full"
+            src={image}
+            alt="activity"
+          />
+        )}
+
+        {<span className="m-auto text-lg">{name?.slice(0, 1)}</span>}
       </div>
 
       <div className="text-xs font-medium text-gray-600">
         <div>
-          <span className={"font-semibold text-black text-sm"}>{user}</span>{" "}
-          {desc}
+          <span className={"font-semibold text-black text-sm"}>{name}</span>
         </div>
 
         <div className="text-xs text-gray-400 font-medium">
-          Active {time} ago
+          Active {"5 mins"} ago
         </div>
       </div>
     </div>

@@ -181,29 +181,32 @@ const Comments = ({ handleComment, handleChange, comment, comments }) => {
 
       <div className="flex flex-col gap-1">
         {/* single comment */}
-        {comments?.slice(0, showItems)?.map(({ postedBy, text }) => (
-          <div div className="flex gap-1">
-            {/* user avatar */}
-            <div className="h-10 w-10 shrink-0 rounded-full bg-teal-500 text-white font-bold uppercase flex items-center justify-center">
-              {postedBy?.name?.slice(0, 1)}
-            </div>
+        {comments
+          ?.reverse()
+          .slice(0, showItems)
+          .map(({ postedBy, text }) => (
+            <div div className="flex gap-2">
+              {/* user avatar */}
+              <div className="h-10 w-10 shrink-0 rounded-full bg-teal-500 text-white font-bold uppercase flex items-center justify-center">
+                {postedBy?.name?.slice(0, 1)}
+              </div>
 
-            {/* comment */}
-            <div className="bg-zinc-300 rounded-2xl text-zinc-900 p-2 flex flex-col gap-2">
               {/* comment */}
+              <div className="bg-zinc-300 rounded-2xl text-zinc-900 p-2 flex flex-col gap-2">
+                {/* comment */}
 
-              <div className="text-zinc-800 inline-flex">{text}</div>
+                <div className="text-zinc-800 inline-flex">{text}</div>
 
-              {/* commented by */}
-              <div className="text-zinc-500">
-                comment By:&nbsp;
-                <span className="font-medium text-zinc-600">
-                  {postedBy?.name}
-                </span>
+                {/* commented by */}
+                <div className="text-zinc-500">
+                  comment By:&nbsp;
+                  <span className="font-medium text-zinc-600">
+                    {postedBy?.name}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       <button

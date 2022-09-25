@@ -8,7 +8,7 @@ const SharePostInput = ({ handleShowModal }) => {
   return (
     <div className="bg-white border-2 rounded-2xl p-3 sticky top-0 z-10">
       <div className="flex p-2 items-center gap-3">
-        <Image user={user} />
+        <Image label={user?.name?.slice(0, 1)} />
 
         <div
           onClick={handleShowModal}
@@ -25,8 +25,8 @@ const SharePostInput = ({ handleShowModal }) => {
 
 export default SharePostInput;
 
-const Image = ({ user }) => (
-  <div className="h-12 w-12 -ml-2 flex rounded-full justify-between bg-teal-500 items-center border-2 border-white overflow-hidden  ">
-    <span className="m-auto text-lg text-white">{user?.name?.slice(0, 1)}</span>
+export const Image = ({ label }) => (
+  <div className="h-12 w-12 -ml-2 flex rounded-full justify-between bg-teal-600 items-center border-2 border-white overflow-hidden ">
+    <span className="m-auto text-lg text-white ">{label}</span>
   </div>
 );

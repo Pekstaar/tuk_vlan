@@ -57,16 +57,36 @@ const unCommentPost = async (id) => {
   return res.data;
 };
 
-// const getFollowers = async (id) => {
-//   await setAuthToken(axios);
+const getFriends = async (id) => {
+  await setAuthToken(axios);
 
-//   // data: comment, postId
-//   const res = await axios.put(`/uncomment`, {
-//     postId: id,
-//   });
+  // data: comment, postId
+  const res = await axios.get(`/users/getfriends`);
 
-//   return res.data;
-// };
+  return res.data;
+};
+const getFollowers = async (id) => {
+  await setAuthToken(axios);
+
+  // data: comment, postId
+  const res = await axios.get(`/users/findpeople`, {
+    postId: id,
+  });
+
+  return res.data;
+};
+
+const follow = async (id) => {
+  await setAuthToken(axios);
+
+  // data: comment, postId
+  const res = await axios.put(`/users/follow`, {
+    followId: id,
+  });
+
+  return res.data;
+};
+
 const PostServices = {
   createPost,
   fetchMyPosts,
@@ -74,6 +94,9 @@ const PostServices = {
   unlikePost,
   commentOnPost,
   unCommentPost,
+  getFollowers,
+  getFriends,
+  follow,
 };
 
 export default PostServices;

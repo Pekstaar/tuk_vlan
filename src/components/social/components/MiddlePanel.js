@@ -33,7 +33,11 @@ const MiddlePanel = () => {
 
     return posts;
   };
+
+  // queries(fetch)
   const { data: posts, status, refetch } = useQuery("posts", fetchPosts);
+
+  // mutations
   const createPostMutation = useMutation((newPost) => {
     return PostServices.createPost(newPost);
   });
