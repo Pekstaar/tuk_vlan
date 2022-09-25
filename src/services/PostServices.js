@@ -56,6 +56,17 @@ const unCommentPost = async (id) => {
 
   return res.data;
 };
+
+// const getFollowers = async (id) => {
+//   await setAuthToken(axios);
+
+//   // data: comment, postId
+//   const res = await axios.put(`/uncomment`, {
+//     postId: id,
+//   });
+
+//   return res.data;
+// };
 const PostServices = {
   createPost,
   fetchMyPosts,

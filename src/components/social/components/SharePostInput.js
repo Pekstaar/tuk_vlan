@@ -8,11 +8,7 @@ const SharePostInput = ({ handleShowModal }) => {
   return (
     <div className="bg-white border-2 rounded-2xl p-3 sticky top-0 z-10">
       <div className="flex p-2 items-center gap-3">
-        <Image
-          img={
-            "https://media.istockphoto.com/photos/side-portrait-of-laughing-african-american-man-looking-up-picture-id1142003972?k=20&m=1142003972&s=612x612&w=0&h=583slP1jSnOeOvU_-g7XCvFSaGaivDvKQj2KNv34Kr4="
-          }
-        />
+        <Image user={user} />
 
         <div
           onClick={handleShowModal}
@@ -29,8 +25,8 @@ const SharePostInput = ({ handleShowModal }) => {
 
 export default SharePostInput;
 
-const Image = ({ img }) => (
-  <div className="h-12 w-12 -ml-2 flex rounded-full justify-between items-center border-2 border-teal-600 overflow-hidden  ">
-    <img src={img} alt="img" className="w-full h-full object-cover " />
+const Image = ({ user }) => (
+  <div className="h-12 w-12 -ml-2 flex rounded-full justify-between bg-teal-500 items-center border-2 border-white overflow-hidden  ">
+    <span className="m-auto text-lg text-white">{user?.name?.slice(0, 1)}</span>
   </div>
 );
