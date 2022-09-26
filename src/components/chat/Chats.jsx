@@ -13,8 +13,8 @@ import { getSender } from "../../utils";
 import ChatService from "../../services/ChatService";
 import io from "socket.io-client";
 import { ENDPOINT } from "../../services/AxiosService";
-import Lottie from "react-lottie";
 import animationData from "../../assets/animations/typing.json";
+// import Lottie from "react-lottie";
 // import EmojiPicker from "../EmojiPicker";
 
 var socket, selectedChatCompare;
@@ -253,12 +253,13 @@ export const Chats = (props) => {
 
           <div className="w-full p-1 absolute bottom-0">
             {isTyping ? (
-              <Lottie
-                options={defaultOptions}
-                // height={50}
-                width={70}
-                style={{ marginBottom: 15, marginLeft: 0 }}
-              />
+              // <Lottie
+              //   options={ }
+              //   // height={50}
+              //   width={70}
+              //   style={{ marginBottom: 15, marginLeft: 0 }}
+              // />
+            <span className={"text-xs"}>typing . . .</span>
             ) : (
               ""
             )}
