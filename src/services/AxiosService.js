@@ -1,7 +1,8 @@
 import axios from "axios";
 import localStorageService from "./LocalStorageService";
 
-export const ENDPOINT = "http://localhost:5500";
+// export const ENDPOINT = "http://localhost:5500";
+export const ENDPOINT = "https://tuk-vlan-backend.herokuapp.com/";
 const BASE_URL = ENDPOINT + "/api";
 
 const AxiosUtility = axios.create({
