@@ -40,6 +40,7 @@ const Home = () => {
       const { data } = await axios.get("/chat");
 
       setChats(data);
+      console.log(data);
     } catch (e) {
       const errorMessage = e?.response?.data?.message || e?.message || e;
 

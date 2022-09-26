@@ -191,10 +191,9 @@ export const Users = ({
             const chatUser = chat?.users?.filter(
               (item) => item?._id !== currentUser?._id
             )[0];
-
             return (
               <div
-                className={`user m-1 p-2 hover:bg-teal-500 flex gap-2 cursor-pointer ${
+                className={`user m-1 p-2 hover:bg-teal-500 flex gap-2 cursor-pointer rounded-md ${
                   selectedChat?._id === chat._id
                     ? "bg-teal-500"
                     : "bg-indigo-50"
@@ -204,6 +203,7 @@ export const Users = ({
                   setSelectedChat(chat);
                 }}
               >
+                {/* {JSON.stringify(chat)} */}
                 {/* image */}
                 <div className="img w-14 h-14 rounded-full border-2 flex-shrink-0 border-gray-300 relative flex items-center justify-center bg-green-200 ">
                   {/* image/ */}
@@ -229,27 +229,40 @@ export const Users = ({
                 </div>
 
                 {/* details */}
-                <div className="details flex-grow justify-center gap-1 font-medium h-14 flex flex-col hover:text-white">
-                  <span className="text-sm text-gray-800">
+                {/* < className="flex flex-col"> */}
+                <div className="details flex-grow justify-center gap-0.5 font-medium h-14 flex flex-col hover:text-white">
+                  <div className="text-sm text-zinc-800 flex justify-between items-center">
                     {!chat?.isGroupChat ? chatUser?.name : chat?.chatName}
-                  </span>
-                  <span className="text-xs text-gray-400">
-                    {chat?.latestMessage?.length >= 29
-                      ? `${chat?.latestMessage?.substring(0, 27)}...`
-                      : chat?.latestMessage?.latestMessageText}
-                  </span>
+
+                    <span className={"font-normal text-xs"}>
+                      {new Date(chat?.latestMessage?.createdAt)
+                        .toLocaleString()
+                        .slice(11)}
+                    </span>
+                  </div>
+                  {/* <span className="text-xs text-gray-400">
+                    {chat?.latestMessage?.content?.length >= 29
+                      ? `${chat?.latestMessage?.content?.substring(0, 27)}...`
+                      : chat?.latestMessage?.content?.latestMessageText}
+                  </span> */}
+
+                  <div className="text-xs text-zinc-700 font-normal">
+                    {chat?.latestMessage?.content?.length >= 52
+                      ? `${chat?.latestMessage?.content?.substring(0, 50)}...`
+                      : chat?.latestMessage?.content?.latestMessageText}
+                  </div>
                 </div>
 
                 {/* last chat time */}
-                <div className="time text-xs text-gray-600 flex flex-col">
-                  <span>11.36</span>
-                  <span
+                {/* <div className="time text-xs text-gray-600 flex flex-col"> */}
+
+                {/* <span
                     className=" h-5 w-5 rounded-full text-gray-100 font-bold  flex items-center justify-center"
                     style={{ backgroundColor: "#f88417c0" }}
                   >
                     5
-                  </span>
-                </div>
+                  </span> */}
+                {/* </div> */}
               </div>
             );
           })}

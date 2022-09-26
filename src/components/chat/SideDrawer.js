@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import axios, { setAuthToken } from "../../services/AxiosService";
-import Loader, { ListLoader } from "../Loader";
+import Loader from "../Loader";
 import { toastError } from "../toaster";
 import Avatar from "@mui/material/Avatar";
 import GroupModal from "./GroupModal";
 // import { Box } from "@chakra-ui/react";
 import { MainState } from "../../services/context/MainContext";
+import LoadingList from "../social/components/LoadingList";
 
 const SideDrawer = () => {
   const {
@@ -24,6 +25,23 @@ const SideDrawer = () => {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
   // const [showGroupModal, setShowGroupModal] = useState(false);
+
+  // const { data: posts, status, refetch } = useQuery("posts", async () => {
+  //   const AllUsers = await axios.get(`/users`);
+
+  // });
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      await setAuthToken(axios);
+      const { data } = await axios.get(`/users`);
+
+      setLoading(false);
+      setSearchResult(data);
+    };
+
+    fetchUsers();
+  }, []);
 
   const handleSearch = async (e) => {
     const searchValue = e.target.value;
@@ -121,17 +139,15 @@ const SideDrawer = () => {
             {loadingChat && <Loader />}
 
             <div className="px-3 flex flex-col gap-2">
-              {loading ? (
-                <ListLoader />
-              ) : (
-                searchResult?.map((user) => (
-                  <UserListItem
-                    key={user?._id}
-                    user={user}
-                    handleFunction={() => accessChat(user?._id)}
-                  />
-                ))
-              )}
+              {loading
+                ? [0, 1, 2, 3, 4]?.map((_) => <LoadingList />)
+                : searchResult?.map((user) => (
+                    <UserListItem
+                      key={user?._id}
+                      user={user}
+                      handleFunction={() => accessChat(user?._id)}
+                    />
+                  ))}
             </div>
             {/* {children} */}
           </article>
