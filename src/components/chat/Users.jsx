@@ -194,9 +194,7 @@ export const Users = ({
             return (
               <div
                 className={`user m-1 p-2 hover:bg-teal-500 flex gap-2 cursor-pointer rounded-md ${
-                  selectedChat?._id === chat._id
-                    ? "bg-teal-500"
-                    : "bg-indigo-50"
+                  selectedChat?._id === chat._id ? "bg-teal-500" : "bg-zinc-100"
                 }`}
                 key={chat.uid}
                 onClick={() => {
