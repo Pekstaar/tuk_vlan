@@ -224,7 +224,7 @@ export const Users = ({
                   {chatUser?.status === "online" ? (
                     <div className="absolute bottom-0 right-0 h-2 w-2 p-1.5  bg-green-500 border-white border-2 rounded-full" />
                   ) : (
-                    <div className="absolute bottom-0 right-0 h-2 w-2 p-1.5  bg-gray-400 border-white border-2 rounded-full" />
+                    <div className="absolute bottom-0 right-0 h-2 w-2 p-1.5  bg-zinc-500 border-white border-2 rounded-full" />
                   )}
                 </div>
 
