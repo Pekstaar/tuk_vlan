@@ -13,7 +13,7 @@ import { getSender } from "../../utils";
 import ChatService from "../../services/ChatService";
 import io from "socket.io-client";
 import { ENDPOINT } from "../../services/AxiosService";
-import animationData from "../../assets/animations/typing.json";
+// import animationData from "../../assets/animations/typing.json";
 // import Lottie from "react-lottie";
 // import EmojiPicker from "../EmojiPicker";
 
@@ -28,21 +28,21 @@ export const Chats = (props) => {
   const [newMessage, setNewMessage] = useState("");
 
   const [messages, setMessages] = useState([]);
-  const [chats, setChats] = useState({ messages: [] });
+  const [chats] = useState({ messages: [] });
   const [socketConnection, setSocketConnection] = useState(false);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
 
   // const [displayAttach, setDisplayAttach] = useState("");
 
@@ -259,7 +259,7 @@ export const Chats = (props) => {
               //   width={70}
               //   style={{ marginBottom: 15, marginLeft: 0 }}
               // />
-            <span className={"text-xs"}>typing . . .</span>
+              <span className={"text-xs"}>typing . . .</span>
             ) : (
               ""
             )}

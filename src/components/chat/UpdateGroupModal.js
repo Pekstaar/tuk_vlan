@@ -12,7 +12,6 @@ const UpdateGroup = ({
   groupDetails: details,
   user,
 }) => {
-  const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [addedUsers, setAddedUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,7 +22,7 @@ const UpdateGroup = ({
 
   const handleSearch = async (e) => {
     const searchValue = e.target.value;
-    setSearch(searchValue);
+    // setSearch(searchValue);
     setLoading(true);
 
     try {
