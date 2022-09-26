@@ -37,7 +37,7 @@ app.use("/api/posts", require("./routes/postRoutes"));
 //     )
 //   );
 // } else {
-//   app.get("/", (req, res) => res.send("Please set to production"));
+  app.get("/", (req, res) => res.send("Please set to production"));
 // }
 
 app.use(notFound);
