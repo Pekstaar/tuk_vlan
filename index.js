@@ -27,34 +27,23 @@ app.use("/api/chat", require("./routes/chatRoutes"));
 app.use("/api/message", require("./routes/messageRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 
-// Serve frontend
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-//   app.get("*", (req, res) =>
-//     res.sendFile(
-//       path.resolve(__dirname, "../", "frontend", "build", "index.html")
-//     )
-//   );
-// } else {
   app.get("/", (req, res) => res.send("Please set to production"));
-// }
+
 
 app.use(notFound);
 app.use(errorHandler);
 
 // app.use(errorHandler);
 
-const server = app.listen(port, () =>
-  console.log(`Server started on http://localhost:${port}`)
-);
+const server = app.listen(port);
 
 // let users = [];
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://tuk-vlan.netlify.app",
   },
 });
 
