@@ -1,12 +1,17 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import MeetingFooter from "../MeetingFooter/MeetingFooter.component";
 import Participants from "../Participants/Participants.component";
 import "./MainScreen.css";
 import { connect } from "react-redux";
 import { setMainStream, updateUser } from "../../store/actioncreator";
+import CallPageDetails from "../meeting/CallPageDetails.jsx";
 
 const MainScreen = (props) => {
   const participantRef = useRef(props.participants);
+  const [showLink, setShowLink] = useState(true);
+
+  const currentUrl = new URL(window.location.href);
+  const id = currentUrl.searchParams.get("id");
 
   const onMicClick = (micEnabled) => {
     if (props.stream) {
@@ -73,8 +78,13 @@ const MainScreen = (props) => {
     props.updateUser({ screen: true });
   };
   return (
-    <div className="wrapper">
+    <div className="wrapper ">
       <div className="main-screen">
+        <CallPageDetails
+          isOpen={showLink}
+          onClose={() => setShowLink(false)}
+          url={id}
+        />
         <Participants />
       </div>
 
@@ -83,6 +93,9 @@ const MainScreen = (props) => {
           onScreenClick={onScreenClick}
           onMicClick={onMicClick}
           onVideoClick={onVideoClick}
+          onToggleLinkCard={() => {
+            setShowLink(!showLink);
+          }}
         />
       </div>
     </div>

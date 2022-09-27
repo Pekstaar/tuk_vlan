@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ReactTooltip from "react-tooltip";
 import "./MeetingFooter.css";
+import { FaLink } from "react-icons/fa";
 const MeetingFooter = (props) => {
   const [streamState, setStreamState] = useState({
     mic: true,
@@ -93,6 +94,15 @@ const MeetingFooter = (props) => {
         // disabled={streamState.screen}
       >
         <FontAwesomeIcon icon={faPhone} />
+      </div>
+
+      <div
+        className="meeting-icons"
+        data-tip="Copy Link"
+        onClick={props.onToggleLinkCard}
+        // disabled={streamState.screen}
+      >
+        <FaLink />
       </div>
       <ReactTooltip />
     </div>

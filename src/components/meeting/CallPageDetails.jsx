@@ -8,7 +8,7 @@ const CallPageDetails = ({ isOpen, onClose, url }) => {
 
   return (
     <div
-      className={`absolute top-5 left-4 bg-gray-50 py-5 px-5 rounded-lg w-[340px] flex flex-col gap-2.5 ${
+      className={`absolute top-5 z-50 left-4 bg-gray-50 py-5 px-5 rounded-lg w-[340px] flex flex-col gap-2.5 ${
         !isOpen && "hidden"
       }`}
     >

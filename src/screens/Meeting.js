@@ -56,7 +56,7 @@ const Meeting = () => {
                 <input
                   type="text"
                   className="p-2.5 border-gray-500 border-2 rounded w-[280px]"
-                  placeholder="Enter code or meeting link"
+                  placeholder="Enter meeting code or id"
                   onChange={(e) => setMeetingCode(e?.target?.value)}
                   value={meetingCode}
                 />
