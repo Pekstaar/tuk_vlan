@@ -14,7 +14,7 @@ import { Media } from "../components/chat/Media";
 import socketIo from "socket.io-client";
 import { Image } from "../components/social/components/SharePostInput";
 
-const ws = socketIo("http://localhost:5500");
+const ws = socketIo("https://tuk-vlan.netlify.app");
 
 const Home = () => {
   useEffect(() => {

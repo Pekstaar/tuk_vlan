@@ -4,7 +4,7 @@ const saveCallId = async (data) => {
   await setAuthToken(axios);
 
   const res = await axios.post(
-    "http://localhost:5500/api/call/save-call-id",
+    "https://tuk-vlan.netlify.app/api/call/save-call-id",
     data
   );
 
@@ -14,7 +14,7 @@ const getCallId = async (id) => {
   await setAuthToken(axios);
 
   const res = await axios.get(
-    `http://localhost:5500/api/call/get_call_id/${id}`
+    `https://tuk-vlan.netlify.app/api/call/get_call_id/${id}`
   );
 
   return res.data;
