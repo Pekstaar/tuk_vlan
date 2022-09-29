@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // icons
 import { FaVideo } from "react-icons/fa";
-import { MdGroup, MdSettingsSuggest } from "react-icons/md";
+// import { MdGroup, MdSettingsSuggest } from "react-icons/md";
 import { IoLogoWechat, IoShareSocialSharp } from "react-icons/io5";
 import { IconButton, Tooltip } from "@mui/material";
 import { GiPowerButton } from "react-icons/gi";
 import { mainContext } from "../services/context/MainContext";
 import localStorageService from "../services/LocalStorageService";
+import ReactTooltip from "react-tooltip";
 
 export const SideNav = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ export const SideNav = () => {
             <IoLogoWechat className={`${commonStyle.textxl}`} />
           </Link>
 
-          {/* group chat page */}
+          {/* group chat page
           <Link
             to="/"
             as="span"
@@ -76,11 +77,12 @@ export const SideNav = () => {
             onClick={() => setCurrent("groupschat")}
           >
             <MdGroup className={`${commonStyle.textxl}`} />
-          </Link>
+          </Link> */}
 
           {/* video Call */}
           <Link
             to="/meet/"
+            data-tip={"Virtual meetings"}
             as="span"
             className={` ${handleSpan("videocall")}`}
             onClick={() => setCurrent("videocall")}
@@ -89,24 +91,28 @@ export const SideNav = () => {
           </Link>
 
           {/* video Call */}
+
           <Link
-            to="/social/"
-            as="span"
+            data-tip="Social platform"
+            // disabled={streamState.screen}
             className={` ${handleSpan("social")}`}
             onClick={() => setCurrent("social")}
+            to="/social/"
+            as="span"
           >
             <IoShareSocialSharp className={`${commonStyle.textxl}`} />
           </Link>
 
           {/* configurations */}
-          <Link
+          {/* <Link
             to="/chat/settings"
             as="span"
             className={` ${handleSpan("configs")}`}
             onClick={() => setCurrent("configs")}
           >
             <MdSettingsSuggest className={`text-2xl`} />
-          </Link>
+          </Link> */}
+          <ReactTooltip />
         </div>
 
         {/* logout button */}
