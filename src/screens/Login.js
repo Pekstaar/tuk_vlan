@@ -90,7 +90,7 @@ const Login = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="form pb-6 flex items-center flex-col gap-5 mt-5"
+          className="form pb-2 flex items-center flex-col gap-5 mt-5"
         >
           {/* or text seperator */}
 
@@ -124,7 +124,7 @@ const Login = () => {
           </Link>
 
           {/* login button */}
-          <div className="submit mx-5 w-full md:mx-0 md:w-4/6  my-4 flex justify-center">
+          <div className="submit mx-5 w-full md:mx-0 md:w-4/6  my-2 flex justify-center">
             {/* <button
               type="submit"
               className={`uppercase w-3/4 text rounded-3xl p-3 bg-teal-700 text-white hover:bg-teal-600`}
@@ -138,10 +138,25 @@ const Login = () => {
           <Link
             as="span"
             to="/signup"
-            className=" text-center mt-2 py-2 w-full md:mx-0 md:w-4/6 text-gray-500 hover:underline"
+            className=" text-center mt-2 w-full md:mx-0 md:w-4/6 text-gray-500 hover:underline"
           >
             Have no account? click here to sign-up
           </Link>
+
+          <div>
+            <span className="text-[14px]">
+              For quick login click on the button below.
+            </span>
+            <div className="flex gap-1">
+              <button className="rounded px-3 py-1 bg-teal-600 text-white text-[13px]">
+                User1
+              </button>
+
+              <button className="rounded px-3 py-1 bg-teal-600 text-white text-[13px]">
+                User2
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
