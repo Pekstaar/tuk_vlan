@@ -145,15 +145,37 @@ const Login = () => {
 
           <div>
             <span className="text-[14px]">
-              For quick login click on the button below.
+              For quick login click one of the button below.
             </span>
             <div className="flex gap-1">
-              <button className="rounded px-3 py-1 bg-teal-600 text-white text-[13px]">
-                User1
+              <button
+                onClick={() =>
+                  setState({ email: "scee/00453/2019", password: "passwad" })
+                }
+                type={"button"}
+                className="rounded px-3 py-1 bg-teal-600 text-white text-[13px]"
+              >
+                User 1
               </button>
 
-              <button className="rounded px-3 py-1 bg-teal-600 text-white text-[13px]">
-                User2
+              <button
+                onClick={() =>
+                  setState({ email: "scee/00001/2019", password: "passwad" })
+                }
+                type={"button"}
+                className="rounded px-3 py-1 bg-teal-600 text-white text-[13px]"
+              >
+                User 2
+              </button>
+
+              <button
+                onClick={() =>
+                  setState({ email: "scee/00002/2019", password: "passwad" })
+                }
+                type={"button"}
+                className="rounded px-3 py-1 bg-teal-600 text-white text-[13px]"
+              >
+                User 3
               </button>
             </div>
           </div>
