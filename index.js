@@ -12,6 +12,12 @@ const { roomHandler } = require("./socket/room");
 connectDB();
 const app = express();
 
+app.enableCors({
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  credentials: true,
+});
+
 app.use(cors()); // <---- use cors middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
