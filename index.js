@@ -12,11 +12,9 @@ const { roomHandler } = require("./socket/room");
 connectDB();
 const app = express();
 
-app.use([
-  cors(),
-  bodyParser.json(),
-  bodyParser.urlencoded({ extended: false }),
-]);
+app.use(cors()); // <---- use cors middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -27,9 +25,7 @@ app.use("/api/chat", require("./routes/chatRoutes"));
 app.use("/api/message", require("./routes/messageRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 
-
-  app.get("/", (req, res) => res.send("Please set to production"));
-
+app.get("/", (req, res) => res.send("Please set to production"));
 
 app.use(notFound);
 app.use(errorHandler);
