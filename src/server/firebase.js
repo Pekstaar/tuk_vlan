@@ -1,8 +1,13 @@
 import firebase from "firebase";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyB7wNWwNHhfV4vRKhxdLMTN8Q6QhAYqYo4", // Add API Key
-  databaseURL: "https://video-conference-0829-default-rtdb.firebaseio.com/", // Add databaseURL
+  apiKey: "AIzaSyB7wNWwNHhfV4vRKhxdLMTN8Q6QhAYqYo4",
+  authDomain: "video-conference-0829.firebaseapp.com",
+  databaseURL: "https://video-conference-0829-default-rtdb.firebaseio.com",
+  projectId: "video-conference-0829",
+  storageBucket: "video-conference-0829.appspot.com",
+  messagingSenderId: "184720853443",
+  appId: "1:184720853443:web:f2959a3a4519b9df8c1576"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
