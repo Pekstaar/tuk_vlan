@@ -2,7 +2,7 @@ import axios from "axios";
 import localStorageService from "./LocalStorageService";
 
 // export const ENDPOINT = "http://localhost:5500";
-export const ENDPOINT = "https://tuk-vlan.onrender.com";
+export const ENDPOINT = "https://tuk-vlan-2.onrender.com";
 const BASE_URL = ENDPOINT + "/api";
 
 const AxiosUtility = axios.create({
