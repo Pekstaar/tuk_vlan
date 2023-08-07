@@ -24,6 +24,7 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/chat", require("./routes/chatRoutes"));
 app.use("/api/message", require("./routes/messageRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
+app.use("/api/errors", require("./routes/errorsRoutes"));
 
 app.get("/", (req, res) => res.send("Please set to production"));
 
