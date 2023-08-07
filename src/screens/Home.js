@@ -17,16 +17,6 @@ import { Image } from "../components/social/components/SharePostInput";
 const ws = socketIo("https://tuk-vlan.netlify.app");
 
 const Home = () => {
-  useEffect(() => {
-    ws.on("connection");
-
-    ws.emit("start-ride", { id: 12345 });
-    ws.emit("position-change", { coods: { lat: 1234, long: 5678 } });
-    ws.emit("track-ride", { id: 54321, rId: 12345 });
-    ws.on("position-change", () => {
-      console.log("position changed");
-    });
-  }, []);
 
   const navigate = useNavigate();
   const { user, chats, setChats } = MainState();
@@ -106,7 +96,6 @@ const Home = () => {
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              siz
             >
               <MenuItem onClick={() => {}}>My Profile</MenuItem>
               <Divider />
