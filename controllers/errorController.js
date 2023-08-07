@@ -1,4 +1,4 @@
-const Error = require('../models/Error');
+const Error = require('../models/ErrorModel');
 const { getErrorMessage } = require("../middleware/errorMiddleWare");
 
 const create=async(req,res,next)=>{
