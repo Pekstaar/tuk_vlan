@@ -5,6 +5,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { ImBin } from "react-icons/im";
 import SideDrawer from "./SideDrawer";
 import { MainState } from "../../services/context/MainContext";
+import moment from "moment";
 // import { NormalButton } from "../Buttons";
 
 // import { db } from "../../FirebaseConfig";
@@ -235,9 +236,7 @@ export const Users = ({
                     {!chat?.isGroupChat ? chatUser?.name : chat?.chatName}
 
                     <span className={"font-normal text-xs"}>
-                      {new Date(chat?.latestMessage?.createdAt)
-                        .toLocaleString()
-                        .slice(11)}
+                      {moment(chat?.latestMessage?.createdAt).fromNow()}
                     </span>
                   </div>
                   {/* <span className="text-xs text-gray-400">
